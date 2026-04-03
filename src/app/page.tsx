@@ -96,11 +96,11 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-karunya-700 mb-2">
                   Oops! Something went wrong
                 </h3>
-                <p className="text-karunya-500/70 mb-6 text-sm">{error}</p>
+                <p className="text-gray-500 mb-8 text-base">{error}</p>
                 <button
                   onClick={handleReset}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-karunya-500 text-white 
-                    rounded-xl hover:bg-karunya-600 transition-colors font-medium"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-karunya-700 text-white 
+                    rounded-full hover:bg-karunya-800 hover:scale-105 active:scale-95 transition-all font-semibold"
                 >
                   Try Again
                 </button>

@@ -6,38 +6,43 @@ import { motion } from "framer-motion";
 export default function Header() {
   return (
     <motion.header
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="w-full py-4 sm:py-6 px-3 sm:px-4"
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full py-8 sm:py-12 px-4"
     >
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto flex flex-col items-center justify-center">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Leaf className="w-6 h-6 sm:w-8 sm:h-8 text-karunya-400" strokeWidth={2.5} />
-          </motion.div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-karunya-700 tracking-tight">
+        <motion.div 
+          className="flex items-center justify-center gap-3 mb-6"
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        >
+          <div className="bg-karunya-900 text-white p-2 rounded-2xl">
+            <Leaf className="w-5 h-5 sm:w-6 sm:h-6 text-karunya-400" strokeWidth={2.5} />
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-sans font-extrabold text-karunya-900 tracking-tighter">
             Karunya
           </h1>
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-warm-400" />
-          </motion.div>
-        </div>
+        </motion.div>
 
         {/* Tagline */}
-        <p className="text-karunya-500 text-base sm:text-lg md:text-xl font-light tracking-wide">
-          Your AI-Powered Vegan Diet Guide
-        </p>
-        <p className="text-karunya-400/70 text-xs sm:text-sm mt-1 max-w-md mx-auto px-2">
-          Upload a food photo — we&apos;ll tell you if it&apos;s vegan and suggest plant-based alternatives
-        </p>
+        <motion.h2 
+          initial={{ opacity: 0, filter: "blur(4px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="text-karunya-900 text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-center max-w-2xl leading-tight"
+        >
+          Your AI-Powered Vegan Guide.
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="text-gray-500 text-sm sm:text-base mt-4 max-w-md mx-auto text-center font-medium"
+        >
+          Upload a photo. Know instantly if it's plant-based.
+        </motion.p>
       </div>
     </motion.header>
   );

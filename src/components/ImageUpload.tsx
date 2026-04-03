@@ -114,41 +114,41 @@ export default function ImageUpload({ onUpload, isLoading }: ImageUploadProps) {
             >
               <input {...getInputProps()} />
 
-              <div className="flex flex-col items-center justify-center py-10 sm:py-16 px-4 sm:px-6">
+              <div className="flex flex-col items-center justify-center py-16 sm:py-24 px-6 sm:px-8">
                 <motion.div
-                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-karunya-100 flex items-center justify-center mb-4 sm:mb-6"
-                  animate={isDragActive ? { scale: [1, 1.1, 1] } : {}}
-                  transition={{ duration: 0.5, repeat: Infinity }}
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-[32px] bg-karunya-900/5 flex items-center justify-center mb-8"
+                  whileHover={{ scale: 1.05, rotate: isDragActive ? 0 : -5 }}
+                  animate={isDragActive ? { scale: [1, 1.05, 1], rotate: [0, 5, 0] } : {}}
+                  transition={{ duration: 0.3 }}
                 >
                   {isDragActive ? (
-                    <Upload className="w-7 h-7 sm:w-9 sm:h-9 text-karunya-500" />
+                    <Upload className="w-8 h-8 sm:w-10 sm:h-10 text-karunya-500" />
                   ) : (
-                    <ImageIcon className="w-7 h-7 sm:w-9 sm:h-9 text-karunya-500" />
+                    <ImageIcon className="w-8 h-8 sm:w-10 sm:h-10 text-gray-400" />
                   )}
                 </motion.div>
 
-                <h3 className="text-lg sm:text-xl font-semibold text-karunya-700 mb-2">
-                  {isDragActive ? "Drop your food photo here" : "Upload Food Photo"}
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-karunya-900 mb-3">
+                  {isDragActive ? "Drop to analyze" : "Drop it here."}
                 </h3>
 
-                <p className="text-karunya-500/70 text-xs sm:text-sm text-center mb-4 sm:mb-6 max-w-xs">
-                  Drag & drop an image of your food, or click to browse. We support JPG, PNG, WebP.
+                <p className="text-gray-500 text-sm sm:text-base text-center mb-8 max-w-sm font-medium">
+                  We support JPG, PNG, and WebP, instantly analyzed by AI.
                 </p>
 
-                <div className="flex gap-2 sm:gap-3">
+                <div className="flex gap-4 sm:gap-4">
                   <button
                     type="button"
-                    className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-karunya-500 text-white rounded-xl
-                      hover:bg-karunya-600 transition-colors text-xs sm:text-sm font-medium shadow-lg shadow-karunya-500/20"
+                    className="flex items-center gap-2 px-6 py-3.5 bg-karunya-900 text-white rounded-full
+                      hover:bg-karunya-800 hover:scale-105 active:scale-95 transition-all text-sm sm:text-base font-semibold"
                   >
-                    <Upload className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    Browse Files
+                    <Upload className="w-4 h-4" />
+                    Browse
                   </button>
                   <button
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      // Trigger camera on mobile
                       const input = document.createElement("input");
                       input.type = "file";
                       input.accept = "image/*";
@@ -161,10 +161,10 @@ export default function ImageUpload({ onUpload, isLoading }: ImageUploadProps) {
                       };
                       input.click();
                     }}
-                    className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 border border-karunya-300/50 text-karunya-600 
-                      rounded-xl hover:bg-karunya-50 transition-colors text-xs sm:text-sm font-medium"
+                    className="flex items-center gap-2 px-6 py-3.5 bg-gray-100 text-karunya-900 
+                      rounded-full hover:bg-gray-200 hover:scale-105 active:scale-95 transition-all text-sm sm:text-base font-semibold"
                   >
-                    <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <Camera className="w-4 h-4" />
                     Camera
                   </button>
                 </div>
@@ -181,19 +181,19 @@ export default function ImageUpload({ onUpload, isLoading }: ImageUploadProps) {
             className="space-y-4"
           >
             {/* Image Preview */}
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white/60 shadow-xl shadow-karunya-900/5">
+            <div className="relative rounded-[32px] overflow-hidden bg-gray-100 shadow-2xl">
               <img
                 src={preview}
                 alt="Food preview"
-                className="w-full h-48 sm:h-64 md:h-80 object-cover"
+                className="w-full h-64 sm:h-96 object-cover"
               />
               {!isLoading && (
                 <button
                   onClick={clearPreview}
-                  className="absolute top-3 right-3 w-8 h-8 bg-black/40 hover:bg-black/60 backdrop-blur-sm 
-                    rounded-full flex items-center justify-center transition-colors"
+                  className="absolute top-4 right-4 w-10 h-10 bg-karunya-900/60 hover:bg-karunya-900/80 backdrop-blur-md 
+                    rounded-full flex items-center justify-center transition-all scale-100 hover:scale-110"
                 >
-                  <X className="w-4 h-4 text-white" />
+                  <X className="w-5 h-5 text-white" />
                 </button>
               )}
             </div>
@@ -205,24 +205,24 @@ export default function ImageUpload({ onUpload, isLoading }: ImageUploadProps) {
               whileHover={isLoading ? {} : { scale: 1.02 }}
               whileTap={isLoading ? {} : { scale: 0.98 }}
               className={`
-                w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 
-                flex items-center justify-center gap-3 shadow-lg
+                w-full py-5 rounded-full font-bold text-lg transition-all duration-300 
+                flex items-center justify-center gap-3 shadow-xl mb-12 shadow-karunya-500/20
                 ${
                   isLoading
-                    ? "bg-karunya-400 text-white/80 cursor-not-allowed shadow-karunya-400/20"
-                    : "bg-karunya-500 text-white hover:bg-karunya-600 shadow-karunya-500/30"
+                    ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                    : "bg-karunya-500 text-white hover:bg-karunya-600 hover:shadow-karunya-500/40"
                 }
               `}
             >
               {isLoading ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Analyzing your food...
+                  <Loader2 className="w-6 h-6 animate-spin text-karunya-500" />
+                  Analyzing image...
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-5 h-5" />
-                  Analyze with AI
+                  <Sparkles className="w-6 h-6" />
+                  Analyze
                 </>
               )}
             </motion.button>

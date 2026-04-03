@@ -1,0 +1,82 @@
+# Duxport Internal Agents & Dashboards — Walkthrough
+
+## What Was Built
+
+A **standalone Next.js admin dashboard** (`admin-dashboard/`) with:
+
+- **8 AI Agents** powered by Groq, each querying real Supabase data
+- **10 Dashboards** with real-time metrics
+- **Secret key authentication** (key: `HarshNishaAnayaVivek`)
+
+---
+
+## Screenshots
+
+### Login Page (Auth Gate)
+![Login page with secret key input and error message](C:/Users/admin/.gemini/antigravity/brain/3f23e76c-667a-402b-9ac7-f714339503d6/login_page.png)
+
+### Agent Control Center
+![All 8 agents with on/off toggles and Run buttons](C:/Users/admin/.gemini/antigravity/brain/3f23e76c-667a-402b-9ac7-f714339503d6/agents_page.png)
+
+### Dashboard Demo Recording
+![Full walkthrough of login and dashboard navigation](C:/Users/admin/.gemini/antigravity/brain/3f23e76c-667a-402b-9ac7-f714339503d6/admin_dashboard_test_1772460481160.webp)
+
+---
+
+## AI Agents
+
+| Agent | What It Analyzes |
+|-------|-----------------|
+| Software Tester | Tool errors, usage patterns, broken tools |
+| UI/UX Researcher | User flows, feature discovery, UX friction |
+| Customer Support | FAQ generation, response templates |
+| Site Reliability Engineer | Error rates, capacity, system health |
+| Data Analyst | Usage trends, revenue insights, anomalies |
+| Growth Analyst | Acquisition, conversion, growth trajectory |
+| Student ID Verifier | Student plan verification, fraud patterns |
+| Security Auditor | Suspicious activity, access pattern analysis |
+
+## Dashboards
+
+| Dashboard | Key Metrics |
+|-----------|------------|
+| Overview | Total users, premium, revenue, tool usage, system status |
+| Growth | DAU, MAU, daily signups, new vs recurring, top tools |
+| Revenue | MRR, ARR, conversion, churn, LTV, CAC, plan distribution |
+| Retention | D1/3/7/14/30 cohort curve, DAU trend |
+| Funnel | Visitor → Signup → Tool Use → Premium conversion |
+| Infra | Hourly requests, error rate, endpoint health, latency |
+| Cost | Cloud spend, cost/user, LTV:CAC, compute utilization |
+| Frontend | Core Web Vitals (LCP/FID/CLS), page load times |
+| Users | Premium vs free breakdown, tool usage comparison |
+
+---
+
+## Verification Results
+
+- ✅ **Build**: `npm run build` — exit code 0, all 15 routes compiled
+- ✅ **Auth Gate**: Wrong key → error, correct key → redirect to dashboard
+- ✅ **All 10 dashboards** load with real Supabase data
+- ✅ **Agent Control**: 8 agents with toggles and Run buttons
+
+---
+
+## Deploy to Vercel
+
+```bash
+cd admin-dashboard
+npx vercel --prod
+```
+
+**Environment variables to set in Vercel:**
+
+| Variable | Value |
+|----------|-------|
+| `ADMIN_SECRET_KEY` | `HarshNishaAnayaVivek` |
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | Your Supabase service key |
+| `GROQ_API_KEY` | Your Groq API key |
+
+## Database Setup
+
+Run [admin-schema.sql](file:///c:/Users/admin/Desktop/Duxport-new/duxport/admin-dashboard/admin-schema.sql) in Supabase SQL Editor to create the agent tracking tables.

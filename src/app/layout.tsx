@@ -55,7 +55,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="bg-gradient-animated leaf-pattern min-h-screen font-sans antialiased">
+      <body className="bg-white min-h-screen font-sans antialiased text-karunya-900 selection:bg-karunya-500 selection:text-white">
         {children}
       </body>
     </html>
